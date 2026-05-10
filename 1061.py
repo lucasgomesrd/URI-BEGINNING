@@ -1,41 +1,28 @@
-dia_inicial = input().split(" ")
-dia_inicial_inteiro = int(dia_inicial[1])
-hora_inicial_completa = input().split(" ")
-hora_inicial = int(hora_inicial_completa[0])
-minuto_inicial = int(hora_inicial_completa[2])
-segundo_inicial = int(hora_inicial_completa[4])
+dia_inicio = int(input().split()[1])
 
-dia_final = input().split(" ")
-dia_final_inteiro = int(dia_final[1])
-hora_final_completa = input().split(" ")
-hora_final = int(hora_final_completa[0])
-minuto_final = int(hora_final_completa[2])
-segundo_final = int(hora_final_completa[4])
+h1, m1, s1 = map(int, input().split(" : "))
 
-#Execução
+dia_fim = int(input().split()[1])
 
-dia = (dia_final_inteiro) - (dia_inicial_inteiro)
+h2, m2, s2 = map(int, input().split(" : "))
 
-hora = (hora_final) - (hora_inicial)
-if(hora < 0):
-    hora = 24 + hora
-    dia = dia - 1
+inicio = (dia_inicio*24*3600 + h1*3600 + m1*60 + s1)
+fim = (dia_fim * 24 * 3600 +h2 * 3600 + m2 * 60 + s2)
 
-minuto = (minuto_final) - (minuto_inicial)
-if(minuto < 0):
-    minuto = 60 + minuto
-    hora = hora - 1
+duracao = fim - inicio
 
-segundos = (segundo_final) - (segundo_inicial)
-if(segundos < 0):
-    segundos = 60 + segundos
-    minuto = minuto - 1
 
-if(dia <= 0):
-    dia = 0
+dias = duracao // (24 * 3600)
+duracao %= (24 * 3600)
 
-print('{} dia(s)'.format(dia))
-print('{} hora(s)'.format(hora))
-print('{} minuto(s)'.format(minuto))
-print('{} segundo(s)'.format(segundos))
+horas = duracao // 3600
+duracao %= 3600
 
+minutos = duracao // 60
+segundos = duracao % 60
+
+
+print(f"{dias} dia(s)")
+print(f"{horas} hora(s)")
+print(f"{minutos} minuto(s)")
+print(f"{segundos} segundo(s)")
